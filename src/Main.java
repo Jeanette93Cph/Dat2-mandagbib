@@ -1,7 +1,17 @@
+import Db.ConnectionConfiguration;
+import Entitet.Bruger;
+import Mappere.BrugerMapper;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Main
-{
+public class Main {
 
 
     public static void main(String[] args)
@@ -10,7 +20,7 @@ public class Main
         //System.out.println(getInt("angiv venligt din skostørrelse ?"));
         //System.out.println(getInt("angiv venligt din højde ?"));
 
-        while(true)
+      /*  while(true)
         {
             switch(getString("angiv dit ønske ? "))
             {
@@ -27,37 +37,16 @@ public class Main
             }
         }
 
+        */
 
+        List<Bruger> brugerList = BrugerMapper.getBrugerList();
 
-    }
-
-
-    public static String getString(String s)
-    {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(s + " : ");
-        return scanner.nextLine();
-
-    }
-
-    public static int getInt(String s)
-    {
-        int res = 0;
-
-
-        while (true)
+        for (Bruger bruger : brugerList)
         {
-            try
-            {
-                res = Integer.parseInt(getString(s));
-                return res;
-            }
-            catch(Exception e)
-            {
-                System.out.println("husk ikke tal ord");
+            System.out.println(bruger.toString());
 
-            }
         }
+
     }
 
 
