@@ -1,7 +1,8 @@
 import Db.ConnectionConfiguration;
-import Entitet.Bruger;
-import Mappere.BrugerMapper;
+import Entitet.*;
+import Mappere.*;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,13 +40,57 @@ public class Main {
 
         */
 
-        List<Bruger> brugerList = BrugerMapper.getBrugerList();
+
+       /*
+       List<Bruger> brugerList = BrugerMapper.getBrugerList();
 
         for (Bruger bruger : brugerList)
         {
             System.out.println(bruger.toString());
 
         }
+        */
+
+        /*
+        List<Forfatter> forfatterList = ForfatterMapper.getForfatterList();
+
+        for (Forfatter forfatter : forfatterList)
+        {
+            System.out.println(forfatter.toString());
+        }
+        */
+
+       /*
+        List<Postnr> postnrList = PostnrMapper.getPostnrList();
+
+        for (Postnr postnr : postnrList)
+        {
+            System.out.println(postnr.toString());
+        }
+        */
+
+
+        /*
+        List<Bogtabel> bogtabelList = BogtabelMapper.getBogtabelList();
+
+        for (Bogtabel bogtabel : bogtabelList)
+        {
+            System.out.println(bogtabel.toString());
+        }
+         */
+
+        List<Udlaan> udlaanList = UdlaanMapper.getUdlaanList();
+
+        for (Udlaan udlaan : udlaanList)
+        {
+            System.out.println(udlaan.toString());
+        }
+
+
+
+
+
+
 
     }
 
