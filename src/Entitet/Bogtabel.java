@@ -17,6 +17,13 @@ public class Bogtabel
         this.idforfatter = idforfatter;
     }
 
+    public Bogtabel(String titel, int idforfatter)
+    {
+        this.titel = titel;
+        this.idforfatter = idforfatter;
+    }
+
+
 
     public int getIdbogtabel() {
         return idbogtabel;

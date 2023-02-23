@@ -12,6 +12,13 @@ public class Postnr
         this.bynavn = bynavn;
     }
 
+    public Postnr(String bynavn)
+    {
+        this.bynavn = bynavn;
+    }
+
+
+
     public int getIdpostnr() {
         return idpostnr;
     }

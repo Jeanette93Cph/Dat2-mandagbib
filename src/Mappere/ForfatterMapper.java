@@ -1,11 +1,10 @@
 package Mappere;
 
 import Db.ConnectionConfiguration;
+import Entitet.Bruger;
 import Entitet.Forfatter;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class ForfatterMapper
 {
 
 
-    public static List<Forfatter> getForfatterList()
+    protected static List<Forfatter> getForfatterList()
     {
 
         List<Forfatter> forfatterList = new ArrayList<>();
@@ -47,6 +46,42 @@ public class ForfatterMapper
         return forfatterList;
 
     }
+
+
+    protected static Forfatter opretForfatter(Forfatter forfatter) throws SQLException
+    {
+
+        try {
+            Connection connection = ConnectionConfiguration.getConnection();
+
+            String sql = "INSERT  INTO biblioteksmandag.Forfatter (navn) VALUES (?)";
+
+//          PreparedStatement statement = connection.prepareStatement("INSERT  INTO biblioteksmandag.forfatter (navn)" + "VALUES (?)");
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            statement.setString(1, forfatter.getNavn());
+
+
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+
+            resultSet.next();
+
+
+            forfatter.setIdforfatter(resultSet.getInt(1));
+
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return forfatter;
+
+    }
+
 
 
 }

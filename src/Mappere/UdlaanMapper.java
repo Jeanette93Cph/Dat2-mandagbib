@@ -1,17 +1,16 @@
 package Mappere;
 
 import Db.ConnectionConfiguration;
+import Entitet.Bruger;
 import Entitet.Udlaan;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UdlaanMapper
 {
-    public static List<Udlaan> getUdlaanList()
+    protected static List<Udlaan> getUdlaanList()
     {
 
         List<Udlaan> udlaanList = new ArrayList<>();
@@ -46,4 +45,46 @@ public class UdlaanMapper
         return udlaanList;
 
     }
+
+
+    protected static Udlaan opretUdlaan(Udlaan udlaan) throws SQLException
+    {
+
+        try {
+            Connection connection = ConnectionConfiguration.getConnection();
+
+            String sql = "INSERT  INTO biblioteksmandag.udlaan (idbog, idbruger) VALUES (?,?)";
+
+//          PreparedStatement statement = connection.prepareStatement("INSERT  INTO biblioteksmandag.udlaan (idbog, idbruger)" + "VALUES (?,?)");
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            statement.setInt(1, udlaan.getIdbog());
+            statement.setInt(2, udlaan.getIdbruger());
+
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+
+            resultSet.next();
+
+
+            udlaan.setIdudlaan(resultSet.getInt(1));
+
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return udlaan;
+
+    }
+
+
+
+
+
+
+
 }

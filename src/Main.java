@@ -1,12 +1,13 @@
 import Db.ConnectionConfiguration;
 import Entitet.*;
+import Language.Dansk;
+import Language.Dialog;
+import Language.English;
 import Mappere.*;
+import Utilities.Input;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,11 +16,8 @@ import java.util.Scanner;
 public class Main {
 
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws SQLException
     {
-        //System.out.println(getString("hvad hedder du ? "));
-        //System.out.println(getInt("angiv venligt din skostørrelse ?"));
-        //System.out.println(getInt("angiv venligt din højde ?"));
 
       /*  while(true)
         {
@@ -41,58 +39,108 @@ public class Main {
         */
 
 
-       /*
-       List<Bruger> brugerList = BrugerMapper.getBrugerList();
+        /* Gennemløb og print af tabellerne via Mapper */
+//
+//       List<Bruger> brugerList = BrugerMapper.getBrugerList();
+//
+//        for (Bruger bruger : brugerList)
+//        {
+//            System.out.println(bruger.toString());
+//
+//        }
+//
+//
+//        List<Forfatter> forfatterList = ForfatterMapper.getForfatterList();
+//
+//        for (Forfatter forfatter : forfatterList)
+//        {
+//            System.out.println(forfatter.toString());
+//        }
+//
+//
+//        List<Postnr> postnrList = PostnrMapper.getPostnrList();
+//
+//        for (Postnr postnr : postnrList)
+//        {
+//            System.out.println(postnr.toString());
+//        }
+//
+//
+//
+//        List<Bogtabel> bogtabelList = BogtabelMapper.getBogtabelList();
+//
+//        for (Bogtabel bogtabel : bogtabelList)
+//        {
+//            System.out.println(bogtabel.toString());
+//        }
+//
+//
+//
+//        List<Udlaan> udlaanList = UdlaanMapper.getUdlaanList();
+//
+//        for (Udlaan udlaan : udlaanList)
+//        {
+//            System.out.println(udlaan.toString());
+//        }
+//
 
-        for (Bruger bruger : brugerList)
-        {
-            System.out.println(bruger.toString());
 
-        }
-        */
+        /* Skifte sprog */
 
         /*
-        List<Forfatter> forfatterList = ForfatterMapper.getForfatterList();
 
-        for (Forfatter forfatter : forfatterList)
+        Dialog dialog;
+
+        dialog = new Dansk();
+
+        System.out.println(dialog.hello());
+
+
+        dialog = new English();
+
+        System.out.println(dialog.hello());
+
+
+        System.out.println(Input.getString(dialog.askAge()));
+
+        dialog = new Dansk();
+
+
+        while(true)
         {
-            System.out.println(forfatter.toString());
+            System.out.println(Input.getString(dialog.askAge()));
+            if(Input.getString(dialog.changeLanguage()).equalsIgnoreCase("y"))
+            {
+                if(dialog instanceof Dansk)
+                {
+                    dialog = new English();
+
+                }
+                else if(dialog instanceof English)
+                {
+                    dialog = new Dansk();
+                }
+
+            }
         }
         */
 
-       /*
-        List<Postnr> postnrList = PostnrMapper.getPostnrList();
 
-        for (Postnr postnr : postnrList)
-        {
-            System.out.println(postnr.toString());
-        }
-        */
+        /* Opret bruger */
 
+//        Facade facade = new Facade();
+//
+//        Bruger bruger = new Bruger("karl", "rosevej", 2800);
+//
+//        facade.hentOpretBruger(bruger);
 
-        /*
-        List<Bogtabel> bogtabelList = BogtabelMapper.getBogtabelList();
-
-        for (Bogtabel bogtabel : bogtabelList)
-        {
-            System.out.println(bogtabel.toString());
-        }
-         */
-
-        List<Udlaan> udlaanList = UdlaanMapper.getUdlaanList();
-
-        for (Udlaan udlaan : udlaanList)
-        {
-            System.out.println(udlaan.toString());
-        }
-
-
-
-
+        /* View hvor tabellerne bliver klasket sammen */
 
 
 
     }
+
+
 
 
 }

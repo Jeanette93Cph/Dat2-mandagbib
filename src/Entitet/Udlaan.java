@@ -17,6 +17,11 @@ public class Udlaan
         this.idbruger = idbruger;
     }
 
+    public Udlaan(int idbog, int idbruger)
+    {
+        this.idbog = idbog;
+        this.idbruger = idbruger;
+    }
 
     public int getIdudlaan() {
         return idudlaan;

@@ -1,18 +1,17 @@
 package Mappere;
 
 import Db.ConnectionConfiguration;
+import Entitet.Bruger;
 import Entitet.Postnr;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PostnrMapper
 {
 
-    public static List<Postnr> getPostnrList()
+    protected static List<Postnr> getPostnrList()
     {
 
         List<Postnr> postnrList = new ArrayList<>();
@@ -45,6 +44,43 @@ public class PostnrMapper
         }
 
         return postnrList;
+
+    }
+
+
+
+    protected static Postnr opretPostnr(Postnr postnr) throws SQLException
+    {
+
+
+        try {
+            Connection connection = ConnectionConfiguration.getConnection();
+
+            String sql = "INSERT  INTO biblioteksmandag.postnr (bynavn) VALUES (?)";
+
+//          PreparedStatement statement = connection.prepareStatement("INSERT  INTO biblioteksmandag.postnr (bynavn)" + "VALUES (?)");
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            statement.setString(1, postnr.getBynavn());
+
+
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+
+            resultSet.next();
+
+
+            postnr.setIdpostnr(resultSet.getInt(1));
+
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return postnr;
 
     }
 

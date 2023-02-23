@@ -12,6 +12,11 @@ public class Forfatter
         this.navn = navn;
     }
 
+    public Forfatter(String navn)
+    {
+        this.navn = navn;
+    }
+
     public int getIdforfatter()
     {
         return idforfatter;
