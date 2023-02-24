@@ -84,7 +84,44 @@ public class BogtabelMapper
     }
 
 
+    public static List<Bogtabel> bogtabelInfo(String titel) throws SQLException
+    {
+        List<Bogtabel> bogtabelList = new ArrayList<>();
 
+
+        try {
+            Connection connection = ConnectionConfiguration.getConnection();
+            {
+                PreparedStatement statement = connection.prepareStatement("SELECT  * FROM biblioteksmandag.bogtabel where titel = ?");
+
+                statement.setString(1,titel);
+
+                ResultSet result = statement.executeQuery();
+
+                while (result.next())
+                {
+                    int id = result.getInt("idbogtabel");
+                    String bogtitel = result.getString("titel");
+                    int idforfatter = result.getInt("idforfatter");
+
+                    Bogtabel bogtabel = new Bogtabel(id, bogtitel, idforfatter);
+                    bogtabelList.add(bogtabel);
+                }
+
+            }
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return bogtabelList;
+
+
+
+    }
 
 
 

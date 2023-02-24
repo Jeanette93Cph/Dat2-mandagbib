@@ -85,6 +85,42 @@ public class PostnrMapper
     }
 
 
+    public static List<Postnr> postnrInfo(String bynavn)
+    {
+        List<Postnr> postnrList = new ArrayList<>();
+
+        try
+        {
+            Connection connection = ConnectionConfiguration.getConnection();
+            {
+                PreparedStatement statement = connection.prepareStatement("SELECT  * FROM biblioteksmandag.postnr where bynavn = ?");
+
+                statement.setString(1,bynavn);
+
+                ResultSet result = statement.executeQuery();
+
+                while (result.next())
+                {
+                    int id = result.getInt("idpostnr");
+                    String navnby = result.getString("bynavn");
+
+                    Postnr postnr = new Postnr(id, navnby);
+                    postnrList.add(postnr);
+                }
+
+            }
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return postnrList;
+
+    }
+
 
 
 }

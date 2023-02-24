@@ -31,7 +31,7 @@ public class Facade {
     }
 
 
-    /* opret bruger */
+    /* opret */
 
     public static Bruger hentOpretBruger(Bruger bruger) throws SQLException
     {
@@ -58,5 +58,33 @@ public class Facade {
         return UdlaanMapper.opretUdlaan(udlaan);
     }
 
+
+
+    /* få info */
+
+    public static List<Bruger> brugerInfo(String navn) throws SQLException
+    {
+        return BrugerMapper.brugerInfo(navn);
+    }
+
+    public static List<Bogtabel> bogtabelInfo(String titel) throws SQLException
+    {
+        return BogtabelMapper.bogtabelInfo(titel);
+    }
+
+    public static List<Forfatter> forfatterInfo(String navn)
+    {
+        return ForfatterMapper.forfatterInfo(navn);
+    }
+
+    public static List<Postnr> postnrInfo(String bynavn)
+    {
+        return PostnrMapper.postnrInfo(bynavn);
+    }
+
+    public static List<Udlaan> udlaanInfo(int idbog)
+    {
+        return UdlaanMapper.udlaanInfo(idbog);
+    }
 
 }

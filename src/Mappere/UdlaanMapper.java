@@ -82,9 +82,43 @@ public class UdlaanMapper
     }
 
 
+    public static List<Udlaan> udlaanInfo(int idbog)
+    {
+
+        List<Udlaan> udlaanList = new ArrayList<>();
 
 
+        try {
+            Connection connection = ConnectionConfiguration.getConnection();
+            {
+                PreparedStatement statement = connection.prepareStatement("SELECT  * FROM biblioteksmandag.udlaan where idbog = ?");
 
+                statement.setInt(1,idbog);
+
+                ResultSet result = statement.executeQuery();
+
+                while (result.next())
+                {
+                    int id = result.getInt("idudlaan");
+                    int idbogid = result.getInt("idbog");
+                    int idbruger = result.getInt("idbruger");
+
+                    Udlaan udlaan = new Udlaan(id, idbogid, idbruger);
+                    udlaanList.add(udlaan);
+                }
+
+            }
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return udlaanList;
+
+    }
 
 
 }

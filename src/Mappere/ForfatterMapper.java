@@ -83,5 +83,39 @@ public class ForfatterMapper
     }
 
 
+    public static List<Forfatter> forfatterInfo(String navn)
+    {
+        List<Forfatter> forfatterList = new ArrayList<>();
 
+
+        try {
+            Connection connection = ConnectionConfiguration.getConnection();
+            {
+                PreparedStatement statement = connection.prepareStatement("SELECT  * FROM biblioteksmandag.forfatter where navn = ?");
+
+                statement.setString(1,navn);
+
+                ResultSet result = statement.executeQuery();
+
+                while (result.next())
+                {
+                    int id = result.getInt("idforfatter");
+                    String forfatternavn = result.getString("navn");
+
+                    Forfatter forfatter = new Forfatter(id, forfatternavn);
+                    forfatterList.add(forfatter);
+                }
+
+            }
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return forfatterList;
+
+    }
 }

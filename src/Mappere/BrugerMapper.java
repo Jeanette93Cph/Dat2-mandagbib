@@ -86,9 +86,41 @@ public class BrugerMapper
     }
 
 
+    public static List<Bruger> brugerInfo(String navn) throws SQLException
+    {
+        List<Bruger> brugerList = new ArrayList<>();
+
+        try {
+            Connection connection = ConnectionConfiguration.getConnection();
 
 
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM biblioteksmandag.bruger where navn = ?");
 
+            statement.setString(1,navn);
+
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+
+                int id = result.getInt("idbruger");
+                String brugernavn = result.getString("navn");
+                String adresse = result.getString("adresse");
+                int post = result.getInt("postnr");
+
+                Bruger bruger = new Bruger(id, brugernavn, adresse, post);
+                brugerList.add(bruger);
+
+            }
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return brugerList;
+    }
 
 }
 

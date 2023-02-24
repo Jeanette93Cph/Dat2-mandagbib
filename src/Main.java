@@ -86,7 +86,6 @@ public class Main {
 
 
         /* Skifte sprog */
-
         /*
 
         Dialog dialog;
@@ -134,7 +133,67 @@ public class Main {
 //
 //        facade.hentOpretBruger(bruger);
 
+
+        
+        /* Få bruger info */
+//        List<Bruger> brugerList = new ArrayList<>();
+//
+//        brugerList = Facade.brugerInfo("ole");
+//
+//        for (Bruger bruger : brugerList)
+//        {
+//            System.out.println(bruger.toString());
+//        }
+
+
+        /* Få bogtabel info */
+//
+//        List<Bogtabel> bogtabelList = new ArrayList<>();
+//
+//        bogtabelList = Facade.bogtabelInfo("fasandræberne");
+//
+//        for (Bogtabel bogtabel : bogtabelList)
+//        {
+//            System.out.println(bogtabel.toString());
+//        }
+
+
+        /* Få forfatter info */
+//        List<Forfatter> forfatterList = new ArrayList<>();
+//
+//        forfatterList = Facade.forfatterInfo("jussi adler");
+//
+//        for (Forfatter forfatter : forfatterList)
+//        {
+//            System.out.println(forfatter.toString());
+//        }
+
+
+        /* Få postnr info */
+//
+//        List<Postnr> postnrList = new ArrayList<>();
+//
+//        postnrList = Facade.postnrInfo("lyngby");
+//
+//        for (Postnr postnr : postnrList)
+//        {
+//            System.out.println(postnr.toString());
+//        }
+
+
+        /* Få udlaan info */
+//         List<Udlaan> udlaanList = new ArrayList<>();
+//
+//         udlaanList = Facade.udlaanInfo(4);
+//
+//        for (Udlaan udlaan : udlaanList)
+//        {
+//            System.out.println(udlaan.toString());
+//        }
+
+
         /* View hvor tabellerne bliver klasket sammen */
+
 
 
 
